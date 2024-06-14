@@ -1,5 +1,81 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.plot.ly/plotly-latest.min.css">
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 12px #aaa;
+        }
+        .dropdown {
+            margin: 10px 0;
+        }
+        .submit-btn {
+            display: block;
+            margin: 20px 0;
+        }
+    </style>
 </head>
-
+<body>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="dropdown">
+                <label for="dropdown1">Dropdown 1:</label>
+                <select name="dropdown1" id="dropdown1">
+                    <option value="Option 1">Option 1</option>
+                    <option value="Option 2">Option 2</option>
+                    <option value="Option 3">Option 3</option>
+                </select>
+            </div>
+            <div class="dropdown">
+                <label for="dropdown2">Dropdown 2:</label>
+                <select name="dropdown2" id="dropdown2">
+                    <option value="Option 1">Option 1</option>
+                    <option value="Option 2">Option 2</option>
+                    <option value="Option 3">Option 3</option>
+                </select>
+            </div>
+            <div class="dropdown">
+                <label for="dropdown3">Dropdown 3:</label>
+                <select name="dropdown3" id="dropdown3">
+                    <option value="Option 1">Option 1</option>
+                    <option value="Option 2">Option 2</option>
+                    <option value="Option 3">Option 3</option>
+                </select>
+            </div>
+            <div class="dropdown">
+                <label for="dropdown4">Dropdown 4:</label>
+                <select name="dropdown4" id="dropdown4">
+                    <option value="Option 1">Option 1</option>
+                    <option value="Option 2">Option 2</option>
+                    <option value="Option 3">Option 3</option>
+                </select>
+            </div>
+            <div class="dropdown">
+                <label for="dropdown5">Dropdown 5:</label>
+                <select name="dropdown5" id="dropdown5">
+                    <option value="Option 1">Option 1</option>
+                    <option value="Option 2">Option 2</option>
+                    <option value="Option 3">Option 3</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+    <script>
+        // Add any JavaScript here if needed
+    </script>
+</body>
+</html>
