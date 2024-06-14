@@ -32,31 +32,35 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <select class="form-control" id="dropdown1">
+                    <select class="form-control" id="dropdown1" name="dropdown1">
                         <option value="">Select Option 1</option>
-                        <option value="Option 1">Option 1</option>
-                        <option value="Option 2">Option 2</option>
-                        <option value="Option 3">Option 3</option>
+                        <option value="Option 1" {% if dropdown1 == 'Option 1' %}selected{% endif %}>Option 1</option>
+                        <option value="Option 2" {% if dropdown1 == 'Option 2' %}selected{% endif %}>Option 2</option>
+                        <option value="Option 3" {% if dropdown1 == 'Option 3' %}selected{% endif %}>Option 3</option>
                     </select>
                 </li>
                 <li class="nav-item">
-                    <select class="form-control" id="dropdown2">
+                    <select class="form-control" id="dropdown2" name="dropdown2">
                         <option value="">Select Option 2</option>
+                        <!-- Options will be populated by JavaScript -->
                     </select>
                 </li>
                 <li class="nav-item">
-                    <select class="form-control" id="dropdown3">
+                    <select class="form-control" id="dropdown3" name="dropdown3">
                         <option value="">Select Option 3</option>
+                        <!-- Options will be populated by JavaScript -->
                     </select>
                 </li>
                 <li class="nav-item">
-                    <select class="form-control" id="dropdown4">
+                    <select class="form-control" id="dropdown4" name="dropdown4">
                         <option value="">Select Option 4</option>
+                        <!-- Options will be populated by JavaScript -->
                     </select>
                 </li>
                 <li class="nav-item">
-                    <select class="form-control" id="dropdown5">
+                    <select class="form-control" id="dropdown5" name="dropdown5">
                         <option value="">Select Option 5</option>
+                        <!-- Options will be populated by JavaScript -->
                     </select>
                 </li>
                 <!-- Submit Button -->
@@ -99,6 +103,17 @@
                 }
             };
 
+            var initialSelection = {
+                dropdown1: "{{ dropdown1 }}",
+                dropdown2: "{{ dropdown2 }}",
+                dropdown3: "{{ dropdown3 }}",
+                dropdown4: "{{ dropdown4 }}",
+                dropdown5: "{{ dropdown5 }}"
+            };
+
+            // Update dropdowns based on initial selection
+            updateDropdowns(initialSelection.dropdown1);
+
             $('#dropdown1').on('change', function() {
                 var selectedOption = $(this).val();
                 updateDropdowns(selectedOption);
@@ -106,10 +121,10 @@
 
             function updateDropdowns(option) {
                 if (option) {
-                    populateDropdown('#dropdown2', dropdownData[option]['dropdown2']);
-                    populateDropdown('#dropdown3', dropdownData[option]['dropdown3']);
-                    populateDropdown('#dropdown4', dropdownData[option]['dropdown4']);
-                    populateDropdown('#dropdown5', dropdownData[option]['dropdown5']);
+                    populateDropdown('#dropdown2', dropdownData[option]['dropdown2'], initialSelection.dropdown2);
+                    populateDropdown('#dropdown3', dropdownData[option]['dropdown3'], initialSelection.dropdown3);
+                    populateDropdown('#dropdown4', dropdownData[option]['dropdown4'], initialSelection.dropdown4);
+                    populateDropdown('#dropdown5', dropdownData[option]['dropdown5'], initialSelection.dropdown5);
                 } else {
                     clearDropdown('#dropdown2');
                     clearDropdown('#dropdown3');
@@ -118,12 +133,12 @@
                 }
             }
 
-            function populateDropdown(dropdownId, options) {
+            function populateDropdown(dropdownId, options, selectedOption) {
                 var dropdown = $(dropdownId);
                 dropdown.empty();
                 dropdown.append('<option value="">Select ' + dropdownId.replace('#', '') + '</option>');
                 options.forEach(function(option) {
-                    dropdown.append('<option value="' + option + '">' + option + '</option>');
+                    dropdown.append('<option value="' + option + '"' + (option === selectedOption ? ' selected' : '') + '>' + option + '</option>');
                 });
             }
 
