@@ -26,47 +26,33 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown 1
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <a class="dropdown-item" href="#" data-value="Option 1">Option 1</a>
-                        <a class="dropdown-item" href="#" data-value="Option 2">Option 2</a>
-                        <a class="dropdown-item" href="#" data-value="Option 3">Option 3</a>
-                    </div>
+                <li class="nav-item">
+                    <select class="form-control" id="dropdown1">
+                        <option value="">Select Option 1</option>
+                        <option value="Option 1">Option 1</option>
+                        <option value="Option 2">Option 2</option>
+                        <option value="Option 3">Option 3</option>
+                    </select>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown 2
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <!-- Options will be populated dynamically -->
-                    </div>
+                <li class="nav-item">
+                    <select class="form-control" id="dropdown2">
+                        <option value="">Select Option 2</option>
+                    </select>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown 3
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                        <!-- Options will be populated dynamically -->
-                    </div>
+                <li class="nav-item">
+                    <select class="form-control" id="dropdown3">
+                        <option value="">Select Option 3</option>
+                    </select>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown 4
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu4">
-                        <!-- Options will be populated dynamically -->
-                    </div>
+                <li class="nav-item">
+                    <select class="form-control" id="dropdown4">
+                        <option value="">Select Option 4</option>
+                    </select>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown 5
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu5">
-                        <!-- Options will be populated dynamically -->
-                    </div>
+                <li class="nav-item">
+                    <select class="form-control" id="dropdown5">
+                        <option value="">Select Option 5</option>
+                    </select>
                 </li>
             </ul>
         </div>
@@ -105,30 +91,38 @@
                 }
             };
 
-            $('#dropdownMenu1 .dropdown-item').on('click', function(e) {
-                e.preventDefault();
-                var selectedOption = $(this).data('value');
+            $('#dropdown1').on('change', function() {
+                var selectedOption = $(this).val();
                 updateDropdowns(selectedOption);
             });
 
             function updateDropdowns(option) {
-                var dropdown2Options = dropdownData[option]['dropdown2'];
-                var dropdown3Options = dropdownData[option]['dropdown3'];
-                var dropdown4Options = dropdownData[option]['dropdown4'];
-                var dropdown5Options = dropdownData[option]['dropdown5'];
-
-                populateDropdown('#dropdownMenu2', dropdown2Options);
-                populateDropdown('#dropdownMenu3', dropdown3Options);
-                populateDropdown('#dropdownMenu4', dropdown4Options);
-                populateDropdown('#dropdownMenu5', dropdown5Options);
+                if (option) {
+                    populateDropdown('#dropdown2', dropdownData[option]['dropdown2']);
+                    populateDropdown('#dropdown3', dropdownData[option]['dropdown3']);
+                    populateDropdown('#dropdown4', dropdownData[option]['dropdown4']);
+                    populateDropdown('#dropdown5', dropdownData[option]['dropdown5']);
+                } else {
+                    clearDropdown('#dropdown2');
+                    clearDropdown('#dropdown3');
+                    clearDropdown('#dropdown4');
+                    clearDropdown('#dropdown5');
+                }
             }
 
             function populateDropdown(dropdownId, options) {
-                var dropdownMenu = $(dropdownId + ' .dropdown-menu');
-                dropdownMenu.empty();
+                var dropdown = $(dropdownId);
+                dropdown.empty();
+                dropdown.append('<option value="">Select ' + dropdownId.replace('#', '') + '</option>');
                 options.forEach(function(option) {
-                    dropdownMenu.append('<a class="dropdown-item" href="#">' + option + '</a>');
+                    dropdown.append('<option value="' + option + '">' + option + '</option>');
                 });
+            }
+
+            function clearDropdown(dropdownId) {
+                var dropdown = $(dropdownId);
+                dropdown.empty();
+                dropdown.append('<option value="">Select ' + dropdownId.replace('#', '') + '</option>');
             }
         });
     </script>
