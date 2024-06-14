@@ -18,21 +18,43 @@
         }
         .navbar-nav {
             display: flex;
+            flex-direction: row;
+            align-items: center;
             justify-content: space-between;
             width: 100%;
         }
         .nav-item {
-            flex: 1;
-            display: flex;
-            justify-content: center;
+            margin-right: 10px;
         }
-        .nav-item select, .nav-item form {
-            width: 80%;
+        .nav-item:last-child {
+            margin-right: 0;
+        }
+        .form-inline {
+            display: flex;
+            align-items: center;
         }
         .submit-btn {
             color: #ffffff;
             background-color: #007bff;
             border-color: #007bff;
+            margin-left: 10px;
+        }
+        @media (max-width: 768px) {
+            .navbar-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .nav-item {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .nav-item:last-child {
+                margin-bottom: 0;
+            }
+            .submit-btn {
+                margin-left: 0;
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
