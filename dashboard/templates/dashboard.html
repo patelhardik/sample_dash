@@ -18,43 +18,21 @@
         }
         .navbar-nav {
             display: flex;
-            flex-direction: row;
-            align-items: center;
             justify-content: space-between;
             width: 100%;
         }
         .nav-item {
-            margin-right: 10px;
-        }
-        .nav-item:last-child {
-            margin-right: 0;
-        }
-        .form-inline {
+            flex: 1;
             display: flex;
-            align-items: center;
+            justify-content: center;
+        }
+        .nav-item select, .nav-item form {
+            width: 80%;
         }
         .submit-btn {
             color: #ffffff;
             background-color: #007bff;
             border-color: #007bff;
-            margin-left: 10px;
-        }
-        @media (max-width: 768px) {
-            .navbar-nav {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .nav-item {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-            .nav-item:last-child {
-                margin-bottom: 0;
-            }
-            .submit-btn {
-                margin-left: 0;
-                margin-top: 10px;
-            }
         }
     </style>
 </head>
@@ -66,45 +44,45 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <select class="form-control" id="dropdown1" name="dropdown1">
-                        <option value="">Select Option 1</option>
-                        <option value="Option 1" {% if dropdown1 == 'Option 1' %}selected{% endif %}>Option 1</option>
-                        <option value="Option 2" {% if dropdown1 == 'Option 2' %}selected{% endif %}>Option 2</option>
-                        <option value="Option 3" {% if dropdown1 == 'Option 3' %}selected{% endif %}>Option 3</option>
-                    </select>
-                </li>
-                <li class="nav-item">
-                    <select class="form-control" id="dropdown2" name="dropdown2">
-                        <option value="">Select Option 2</option>
-                        <!-- Options will be populated by JavaScript -->
-                    </select>
-                </li>
-                <li class="nav-item">
-                    <select class="form-control" id="dropdown3" name="dropdown3">
-                        <option value="">Select Option 3</option>
-                        <!-- Options will be populated by JavaScript -->
-                    </select>
-                </li>
-                <li class="nav-item">
-                    <select class="form-control" id="dropdown4" name="dropdown4">
-                        <option value="">Select Option 4</option>
-                        <!-- Options will be populated by JavaScript -->
-                    </select>
-                </li>
-                <li class="nav-item">
-                    <select class="form-control" id="dropdown5" name="dropdown5">
-                        <option value="">Select Option 5</option>
-                        <!-- Options will be populated by JavaScript -->
-                    </select>
-                </li>
-                <!-- Submit Button -->
-                <li class="nav-item">
-                    <form method="post" class="form-inline">
-                        {% csrf_token %}
+                <form method="post" class="form-inline">
+                    {% csrf_token %}
+                    <li class="nav-item">
+                        <select class="form-control" id="dropdown1" name="dropdown1">
+                            <option value="">Select Option 1</option>
+                            <option value="Option 1" {% if dropdown1 == 'Option 1' %}selected{% endif %}>Option 1</option>
+                            <option value="Option 2" {% if dropdown1 == 'Option 2' %}selected{% endif %}>Option 2</option>
+                            <option value="Option 3" {% if dropdown1 == 'Option 3' %}selected{% endif %}>Option 3</option>
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        <select class="form-control" id="dropdown2" name="dropdown2">
+                            <option value="">Select Option 2</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        <select class="form-control" id="dropdown3" name="dropdown3">
+                            <option value="">Select Option 3</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        <select class="form-control" id="dropdown4" name="dropdown4">
+                            <option value="">Select Option 4</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        <select class="form-control" id="dropdown5" name="dropdown5">
+                            <option value="">Select Option 5</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </li>
+                    <!-- Submit Button -->
+                    <li class="nav-item">
                         <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-                    </form>
-                </li>
+                    </li>
+                </form>
             </ul>
         </div>
     </nav>
