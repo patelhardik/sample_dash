@@ -19,20 +19,34 @@
         .navbar-nav {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             width: 100%;
         }
         .nav-item {
             flex: 1;
+            padding: 0 10px;
             display: flex;
             justify-content: center;
+            align-items: center;
         }
-        .nav-item select, .nav-item form {
-            width: 80%;
+        .nav-item select,
+        .nav-item button {
+            width: 100%;
+            max-width: 200px;
         }
         .submit-btn {
             color: #ffffff;
             background-color: #007bff;
             border-color: #007bff;
+        }
+        @media (max-width: 768px) {
+            .nav-item {
+                padding: 5px 0;
+            }
+            .nav-item select,
+            .nav-item button {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -43,9 +57,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav mr-auto">
-                <form method="post" class="form-inline">
-                    {% csrf_token %}
+            <form method="post" class="form-inline w-100">
+                {% csrf_token %}
+                <ul class="navbar-nav w-100">
                     <li class="nav-item">
                         <select class="form-control" id="dropdown1" name="dropdown1">
                             <option value="">Select Option 1</option>
@@ -78,12 +92,11 @@
                             <!-- Options will be populated by JavaScript -->
                         </select>
                     </li>
-                    <!-- Submit Button -->
                     <li class="nav-item">
                         <button type="submit" class="btn btn-primary submit-btn">Submit</button>
                     </li>
-                </form>
-            </ul>
+                </ul>
+            </form>
         </div>
     </nav>
     <div class="container">
