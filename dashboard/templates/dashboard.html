@@ -4,14 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Add your CSS styles here */
-        body {
-            font-family: Arial, sans-serif;
-        }
+        /* Custom styles */
         .container {
-            width: 50%;
-            margin: auto;
+            max-width: 600px;
+            margin: 20px auto;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
@@ -24,6 +22,11 @@
             display: block;
             margin: 20px 0;
         }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -33,7 +36,7 @@
             {% csrf_token %}
             <div class="dropdown">
                 <label for="dropdown1">Dropdown 1:</label>
-                <select name="dropdown1" id="dropdown1">
+                <select class="form-control" name="dropdown1" id="dropdown1">
                     <option value="Option 1">Option 1</option>
                     <option value="Option 2">Option 2</option>
                     <option value="Option 3">Option 3</option>
@@ -41,7 +44,7 @@
             </div>
             <div class="dropdown">
                 <label for="dropdown2">Dropdown 2:</label>
-                <select name="dropdown2" id="dropdown2">
+                <select class="form-control" name="dropdown2" id="dropdown2">
                     <option value="Option 1">Option 1</option>
                     <option value="Option 2">Option 2</option>
                     <option value="Option 3">Option 3</option>
@@ -49,7 +52,7 @@
             </div>
             <div class="dropdown">
                 <label for="dropdown3">Dropdown 3:</label>
-                <select name="dropdown3" id="dropdown3">
+                <select class="form-control" name="dropdown3" id="dropdown3">
                     <option value="Option 1">Option 1</option>
                     <option value="Option 2">Option 2</option>
                     <option value="Option 3">Option 3</option>
@@ -57,7 +60,7 @@
             </div>
             <div class="dropdown">
                 <label for="dropdown4">Dropdown 4:</label>
-                <select name="dropdown4" id="dropdown4">
+                <select class="form-control" name="dropdown4" id="dropdown4">
                     <option value="Option 1">Option 1</option>
                     <option value="Option 2">Option 2</option>
                     <option value="Option 3">Option 3</option>
@@ -65,17 +68,17 @@
             </div>
             <div class="dropdown">
                 <label for="dropdown5">Dropdown 5:</label>
-                <select name="dropdown5" id="dropdown5">
+                <select class="form-control" name="dropdown5" id="dropdown5">
                     <option value="Option 1">Option 1</option>
                     <option value="Option 2">Option 2</option>
                     <option value="Option 3">Option 3</option>
                 </select>
             </div>
-            <button type="submit" class="submit-btn">Submit</button>
+            <button type="submit" class="btn btn-primary submit-btn">Submit</button>
         </form>
     </div>
-    <script>
-        // Add any JavaScript here if needed
-    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
