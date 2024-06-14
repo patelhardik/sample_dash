@@ -1,4 +1,3 @@
-<!-- templates/dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,9 +31,9 @@
                         Dropdown 1
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <a class="dropdown-item" href="#">Option 1</a>
-                        <a class="dropdown-item" href="#">Option 2</a>
-                        <a class="dropdown-item" href="#">Option 3</a>
+                        <a class="dropdown-item" href="#" data-value="Option 1">Option 1</a>
+                        <a class="dropdown-item" href="#" data-value="Option 2">Option 2</a>
+                        <a class="dropdown-item" href="#" data-value="Option 3">Option 3</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -42,9 +41,7 @@
                         Dropdown 2
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <a class="dropdown-item" href="#">Option 1</a>
-                        <a class="dropdown-item" href="#">Option 2</a>
-                        <a class="dropdown-item" href="#">Option 3</a>
+                        <!-- Options will be populated dynamically -->
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -52,9 +49,7 @@
                         Dropdown 3
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                        <a class="dropdown-item" href="#">Option 1</a>
-                        <a class="dropdown-item" href="#">Option 2</a>
-                        <a class="dropdown-item" href="#">Option 3</a>
+                        <!-- Options will be populated dynamically -->
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -62,9 +57,7 @@
                         Dropdown 4
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu4">
-                        <a class="dropdown-item" href="#">Option 1</a>
-                        <a class="dropdown-item" href="#">Option 2</a>
-                        <a class="dropdown-item" href="#">Option 3</a>
+                        <!-- Options will be populated dynamically -->
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -72,9 +65,7 @@
                         Dropdown 5
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu5">
-                        <a class="dropdown-item" href="#">Option 1</a>
-                        <a class="dropdown-item" href="#">Option 2</a>
-                        <a class="dropdown-item" href="#">Option 3</a>
+                        <!-- Options will be populated dynamically -->
                     </div>
                 </li>
             </ul>
@@ -88,8 +79,58 @@
             <button type="submit" class="btn btn-primary submit-btn">Submit</button>
         </form>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var dropdownData = {
+                "Option 1": {
+                    "dropdown2": ["Option 1-1", "Option 1-2", "Option 1-3"],
+                    "dropdown3": ["Option 1-1", "Option 1-2", "Option 1-3"],
+                    "dropdown4": ["Option 1-1", "Option 1-2", "Option 1-3"],
+                    "dropdown5": ["Option 1-1", "Option 1-2", "Option 1-3"]
+                },
+                "Option 2": {
+                    "dropdown2": ["Option 2-1", "Option 2-2", "Option 2-3"],
+                    "dropdown3": ["Option 2-1", "Option 2-2", "Option 2-3"],
+                    "dropdown4": ["Option 2-1", "Option 2-2", "Option 2-3"],
+                    "dropdown5": ["Option 2-1", "Option 2-2", "Option 2-3"]
+                },
+                "Option 3": {
+                    "dropdown2": ["Option 3-1", "Option 3-2", "Option 3-3"],
+                    "dropdown3": ["Option 3-1", "Option 3-2", "Option 3-3"],
+                    "dropdown4": ["Option 3-1", "Option 3-2", "Option 3-3"],
+                    "dropdown5": ["Option 3-1", "Option 3-2", "Option 3-3"]
+                }
+            };
+
+            $('#dropdownMenu1 .dropdown-item').on('click', function(e) {
+                e.preventDefault();
+                var selectedOption = $(this).data('value');
+                updateDropdowns(selectedOption);
+            });
+
+            function updateDropdowns(option) {
+                var dropdown2Options = dropdownData[option]['dropdown2'];
+                var dropdown3Options = dropdownData[option]['dropdown3'];
+                var dropdown4Options = dropdownData[option]['dropdown4'];
+                var dropdown5Options = dropdownData[option]['dropdown5'];
+
+                populateDropdown('#dropdownMenu2', dropdown2Options);
+                populateDropdown('#dropdownMenu3', dropdown3Options);
+                populateDropdown('#dropdownMenu4', dropdown4Options);
+                populateDropdown('#dropdownMenu5', dropdown5Options);
+            }
+
+            function populateDropdown(dropdownId, options) {
+                var dropdownMenu = $(dropdownId + ' .dropdown-menu');
+                dropdownMenu.empty();
+                options.forEach(function(option) {
+                    dropdownMenu.append('<a class="dropdown-item" href="#">' + option + '</a>');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
