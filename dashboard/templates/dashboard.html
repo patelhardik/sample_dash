@@ -61,34 +61,34 @@
                 {% csrf_token %}
                 <ul class="navbar-nav w-100">
                     <li class="nav-item">
-                        <select class="form-control" id="dropdown1" name="dropdown1">
-                            <option value="">Select Option 1</option>
-                            <option value="Option 1" {% if dropdown1 == 'Option 1' %}selected{% endif %}>Option 1</option>
-                            <option value="Option 2" {% if dropdown1 == 'Option 2' %}selected{% endif %}>Option 2</option>
-                            <option value="Option 3" {% if dropdown1 == 'Option 3' %}selected{% endif %}>Option 3</option>
+                        <select class="form-control" id="selectview" name="selectview">
+                            <option value="">Select View</option>
+                            <option value="chart" {% if selectview == 'chart' %}selected{% endif %}>Chart</option>
+                            <option value="table" {% if selectview == 'table' %}selected{% endif %}>Table</option>
+                            <option value="mix" {% if selectview == 'mix' %}selected{% endif %}>Mix</option>
                         </select>
                     </li>
                     <li class="nav-item">
-                        <select class="form-control" id="dropdown2" name="dropdown2">
-                            <option value="">Select Option 2</option>
+                        <select class="form-control" id="hw_rev" name="hw_rev">
+                            <option value="">Select HW Rev</option>
                             <!-- Options will be populated by JavaScript -->
                         </select>
                     </li>
                     <li class="nav-item">
-                        <select class="form-control" id="dropdown3" name="dropdown3">
-                            <option value="">Select Option 3</option>
+                        <select class="form-control" id="apk" name="apk">
+                            <option value="">Select APK</option>
                             <!-- Options will be populated by JavaScript -->
                         </select>
                     </li>
                     <li class="nav-item">
-                        <select class="form-control" id="dropdown4" name="dropdown4">
-                            <option value="">Select Option 4</option>
+                        <select class="form-control" id="kpi" name="kpi">
+                            <option value="">Select KPI</option>
                             <!-- Options will be populated by JavaScript -->
                         </select>
                     </li>
                     <li class="nav-item">
-                        <select class="form-control" id="dropdown5" name="dropdown5">
-                            <option value="">Select Option 5</option>
+                        <select class="form-control" id="bspview" name="bspview">
+                            <option value="">Select BSP View</option>
                             <!-- Options will be populated by JavaScript -->
                         </select>
                     </li>
@@ -109,60 +109,60 @@
     <script>
         $(document).ready(function() {
             var dropdownData = {
-                "Option 1": {
-                    "dropdown2": ["Option 1-1", "Option 1-2", "Option 1-3"],
-                    "dropdown3": ["Option 1-1", "Option 1-2", "Option 1-3"],
-                    "dropdown4": ["Option 1-1", "Option 1-2", "Option 1-3"],
-                    "dropdown5": ["Option 1-1", "Option 1-2", "Option 1-3"]
+                "chart": {
+                    "hw_rev": ["Chart HW Rev 1", "Chart HW Rev 2", "Chart HW Rev 3"],
+                    "apk": ["Chart APK 1", "Chart APK 2", "Chart APK 3"],
+                    "kpi": ["Chart KPI 1", "Chart KPI 2", "Chart KPI 3"],
+                    "bspview": ["Chart BSP View 1", "Chart BSP View 2", "Chart BSP View 3"]
                 },
-                "Option 2": {
-                    "dropdown2": ["Option 2-1", "Option 2-2", "Option 2-3"],
-                    "dropdown3": ["Option 2-1", "Option 2-2", "Option 2-3"],
-                    "dropdown4": ["Option 2-1", "Option 2-2", "Option 2-3"],
-                    "dropdown5": ["Option 2-1", "Option 2-2", "Option 2-3"]
+                "table": {
+                    "hw_rev": ["Table HW Rev 1", "Table HW Rev 2", "Table HW Rev 3"],
+                    "apk": ["Table APK 1", "Table APK 2", "Table APK 3"],
+                    "kpi": ["Table KPI 1", "Table KPI 2", "Table KPI 3"],
+                    "bspview": ["Table BSP View 1", "Table BSP View 2", "Table BSP View 3"]
                 },
-                "Option 3": {
-                    "dropdown2": ["Option 3-1", "Option 3-2", "Option 3-3"],
-                    "dropdown3": ["Option 3-1", "Option 3-2", "Option 3-3"],
-                    "dropdown4": ["Option 3-1", "Option 3-2", "Option 3-3"],
-                    "dropdown5": ["Option 3-1", "Option 3-2", "Option 3-3"]
+                "mix": {
+                    "hw_rev": ["Mix HW Rev 1", "Mix HW Rev 2", "Mix HW Rev 3"],
+                    "apk": ["Mix APK 1", "Mix APK 2", "Mix APK 3"],
+                    "kpi": ["Mix KPI 1", "Mix KPI 2", "Mix KPI 3"],
+                    "bspview": ["Mix BSP View 1", "Mix BSP View 2", "Mix BSP View 3"]
                 }
             };
 
             var initialSelection = {
-                dropdown1: "{{ dropdown1 }}",
-                dropdown2: "{{ dropdown2 }}",
-                dropdown3: "{{ dropdown3 }}",
-                dropdown4: "{{ dropdown4 }}",
-                dropdown5: "{{ dropdown5 }}"
+                selectview: "{{ selectview }}",
+                hw_rev: "{{ hw_rev }}",
+                apk: "{{ apk }}",
+                kpi: "{{ kpi }}",
+                bspview: "{{ bspview }}"
             };
 
             // Update dropdowns based on initial selection
-            updateDropdowns(initialSelection.dropdown1);
+            updateDropdowns(initialSelection.selectview);
 
-            $('#dropdown1').on('change', function() {
+            $('#selectview').on('change', function() {
                 var selectedOption = $(this).val();
                 updateDropdowns(selectedOption);
             });
 
             function updateDropdowns(option) {
                 if (option) {
-                    populateDropdown('#dropdown2', dropdownData[option]['dropdown2'], initialSelection.dropdown2);
-                    populateDropdown('#dropdown3', dropdownData[option]['dropdown3'], initialSelection.dropdown3);
-                    populateDropdown('#dropdown4', dropdownData[option]['dropdown4'], initialSelection.dropdown4);
-                    populateDropdown('#dropdown5', dropdownData[option]['dropdown5'], initialSelection.dropdown5);
+                    populateDropdown('#hw_rev', dropdownData[option]['hw_rev'], initialSelection.hw_rev);
+                    populateDropdown('#apk', dropdownData[option]['apk'], initialSelection.apk);
+                    populateDropdown('#kpi', dropdownData[option]['kpi'], initialSelection.kpi);
+                    populateDropdown('#bspview', dropdownData[option]['bspview'], initialSelection.bspview);
                 } else {
-                    clearDropdown('#dropdown2');
-                    clearDropdown('#dropdown3');
-                    clearDropdown('#dropdown4');
-                    clearDropdown('#dropdown5');
+                    clearDropdown('#hw_rev');
+                    clearDropdown('#apk');
+                    clearDropdown('#kpi');
+                    clearDropdown('#bspview');
                 }
             }
 
             function populateDropdown(dropdownId, options, selectedOption) {
                 var dropdown = $(dropdownId);
                 dropdown.empty();
-                dropdown.append('<option value="">Select ' + dropdownId.replace('#', '') + '</option>');
+                dropdown.append('<option value="">Select ' + dropdownId.replace('#', '').replace('_', ' ') + '</option>');
                 options.forEach(function(option) {
                     dropdown.append('<option value="' + option + '"' + (option === selectedOption ? ' selected' : '') + '>' + option + '</option>');
                 });
@@ -171,7 +171,7 @@
             function clearDropdown(dropdownId) {
                 var dropdown = $(dropdownId);
                 dropdown.empty();
-                dropdown.append('<option value="">Select ' + dropdownId.replace('#', '') + '</option>');
+                dropdown.append('<option value="">Select ' + dropdownId.replace('#', '').replace('_', ' ') + '</option>');
             }
         });
     </script>
