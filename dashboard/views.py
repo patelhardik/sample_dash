@@ -1,35 +1,18 @@
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
 
-@csrf_exempt
 def dashboard(request):
     context = {
-        'dropdown1': '',
-        'dropdown2': '',
-        'dropdown3': '',
-        'dropdown4': '',
-        'dropdown5': ''
+        'selectview': request.POST.get('selectview', ''),
+        'hw_rev': request.POST.get('hw_rev', ''),
+        'apk': request.POST.get('apk', ''),
+        'kpi': request.POST.get('kpi', ''),
+        'bspview': request.POST.get('bspview', '')
     }
-
-    if request.method == 'POST':
-        # Get the submitted values
-        context['dropdown1'] = request.POST.get('dropdown1', '')
-        context['dropdown2'] = request.POST.get('dropdown2', '')
-        context['dropdown3'] = request.POST.get('dropdown3', '')
-        context['dropdown4'] = request.POST.get('dropdown4', '')
-        context['dropdown5'] = request.POST.get('dropdown5', '')
-
-        # Process the data as needed
-        # For example, you could save the data to the database
-
-        # Redirect back to the original page with the submitted values
-        
-        print(f"Dropdown1 = {context['dropdown1']}")
-        print(f"Dropdown2 = {context['dropdown2']}")
-        print(f"Dropdown3 = {context['dropdown3']}")
-        print(f"Dropdown4 = {context['dropdown4']}")
-        print(f"Dropdown5 = {context['dropdown5']}")
-        return render(request, 'dashboard.html', context)
+    print(f"selectview = {context['selectview']}")
+    print(f"hw_rev = {context['hw_rev']}")
+    print(f"apk = {context['apk']}")
+    print(f"kpi = {context['kpi']}")
+    print(f"bspview = {context['bspview']}")
 
     return render(request, 'dashboard.html', context)
 
