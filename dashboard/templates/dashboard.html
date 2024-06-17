@@ -108,25 +108,8 @@
     <div class="container">
         <h1>Dashboard</h1>
         <div class="row">
-            <div class="col-md-4 chart-container">
-                <div id="chart1"></div>
-            </div>
-            <div class="col-md-4 chart-container">
-                <div id="chart2"></div>
-            </div>
-            <div class="col-md-4 chart-container">
-                <div id="chart3"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 chart-container">
-                <div id="chart4"></div>
-            </div>
-            <div class="col-md-4 chart-container">
-                <div id="chart5"></div>
-            </div>
-            <div class="col-md-4 chart-container">
-                <div id="chart6"></div>
+            <div class="col-md-12 chart-container">
+                <div id="complex_chart"></div>
             </div>
         </div>
     </div>
@@ -202,13 +185,8 @@
                 dropdown.append('<option value="">Select ' + dropdownId.replace('#', '') + '</option>');
             }
 
-            // Render Plotly charts with the data from the context
-            Plotly.react('chart1', JSON.parse('{{ chart1|safe }}'));
-            Plotly.react('chart2', JSON.parse('{{ chart2|safe }}'));
-            Plotly.react('chart3', JSON.parse('{{ chart3|safe }}'));
-            Plotly.react('chart4', JSON.parse('{{ chart4|safe }}'));
-            Plotly.react('chart5', JSON.parse('{{ chart5|safe }}'));
-            Plotly.react('chart6', JSON.parse('{{ chart6|safe }}'));
+            // Render Plotly chart with the data from the context
+            Plotly.react('complex_chart', JSON.parse('{{ complex_chart|safe }}'));
         });
     </script>
 </body>
