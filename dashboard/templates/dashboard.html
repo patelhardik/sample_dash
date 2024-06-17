@@ -48,6 +48,12 @@
                 max-width: 100%;
             }
         }
+        .row {
+            margin-top: 20px;
+        }
+        .chart-container {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -70,7 +76,7 @@
                     </li>
                     <li class="nav-item">
                         <select class="form-control" id="hw_rev" name="hw_rev">
-                            <option value="">Select HW Rev</option>
+                            <option value="">Select HW Revision</option>
                             <!-- Options will be populated by JavaScript -->
                         </select>
                     </li>
@@ -101,11 +107,33 @@
     </nav>
     <div class="container">
         <h1>Dashboard</h1>
-        <!-- Rest of your content -->
+        <div class="row">
+            <div class="col-md-4 chart-container">
+                <div id="chart1"></div>
+            </div>
+            <div class="col-md-4 chart-container">
+                <div id="chart2"></div>
+            </div>
+            <div class="col-md-4 chart-container">
+                <div id="chart3"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 chart-container">
+                <div id="chart4"></div>
+            </div>
+            <div class="col-md-4 chart-container">
+                <div id="chart5"></div>
+            </div>
+            <div class="col-md-4 chart-container">
+                <div id="chart6"></div>
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
         $(document).ready(function() {
             var dropdownData = {
@@ -162,7 +190,7 @@
             function populateDropdown(dropdownId, options, selectedOption) {
                 var dropdown = $(dropdownId);
                 dropdown.empty();
-                dropdown.append('<option value="">Select ' + dropdownId.replace('#', '').replace('_', ' ') + '</option>');
+                dropdown.append('<option value="">Select ' + dropdownId.replace('#', '') + '</option>');
                 options.forEach(function(option) {
                     dropdown.append('<option value="' + option + '"' + (option === selectedOption ? ' selected' : '') + '>' + option + '</option>');
                 });
@@ -171,8 +199,16 @@
             function clearDropdown(dropdownId) {
                 var dropdown = $(dropdownId);
                 dropdown.empty();
-                dropdown.append('<option value="">Select ' + dropdownId.replace('#', '').replace('_', ' ') + '</option>');
+                dropdown.append('<option value="">Select ' + dropdownId.replace('#', '') + '</option>');
             }
+
+            // Render Plotly charts with the data from the context
+            Plotly.react('chart1', JSON.parse('{{ chart1|safe }}'));
+            Plotly.react('chart2', JSON.parse('{{ chart2|safe }}'));
+            Plotly.react('chart3', JSON.parse('{{ chart3|safe }}'));
+            Plotly.react('chart4', JSON.parse('{{ chart4|safe }}'));
+            Plotly.react('chart5', JSON.parse('{{ chart5|safe }}'));
+            Plotly.react('chart6', JSON.parse('{{ chart6|safe }}'));
         });
     </script>
 </body>
